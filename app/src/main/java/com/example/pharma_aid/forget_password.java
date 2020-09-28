@@ -77,7 +77,7 @@ public class forget_password extends AppCompatActivity {
         progressDialog.setMessage( "Sending instruction to reset password  " );
         progressDialog.show();
 
-        firebaseAuth.sendPasswordResetEmail( email ).addOnSuccessListener( new OnSuccessListener<Void>() {
+        firebaseAuth.sendPasswordResetEmail( email ).addOnSuccessListener(  new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
 

@@ -5,7 +5,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorwhite"
-
         tools:context=".register_seller">
 
     <!--TOOLBAR-->
@@ -20,19 +19,20 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_back_white"
-                android:background="@null"
-                ></ImageButton>
+                android:background="@null">
+
+        </ImageButton>
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="Register User"
+                android:text="Register Seller"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:textColor="@color/colorwhite"
+                android:textColor="@color/colorwhite">
 
-                ></TextView>
+        </TextView>
 
         <ImageButton
                 android:id="@+id/gpsBtn"
@@ -41,7 +41,9 @@
                 android:src="@drawable/ic_gps_gray"
                 android:layout_alignParentEnd="true"
                 android:background="@null"
-                ></ImageButton>
+                android:layout_alignParentRight="true">
+
+        </ImageButton>
 
 
     </RelativeLayout>
@@ -54,7 +56,9 @@
             android:src="@drawable/ic_key_white"
             android:padding="5dp"
             android:layout_marginBottom="20dp"
-            android:layout_centerHorizontal="true"></ImageView>
+            android:layout_centerHorizontal="true">
+
+    </ImageView>
 
     <ScrollView
             android:layout_width="match_parent"
@@ -74,8 +78,9 @@
                     app:c_border="true"
                     app:c_border_color="@color/colorPrimary"
                     app:c_border_width="1dp"
-                    android:src="@drawable/ic_person_gray"
-                    ></com.blogspot.atifsoftwares.circularimageview.CircularImageView>
+                    android:src="@drawable/ic_person_gray">
+
+            </com.blogspot.atifsoftwares.circularimageview.CircularImageView>
 
             <EditText
                     android:id="@+id/nameEt"
@@ -88,14 +93,15 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:inputType="textPersonName|textCapWords"
-                    android:background="@drawable/shape_rect02">
-
+                    android:background="@drawable/shape_rect02"
+                    android:drawableLeft="@drawable/ic_person_gray">
 
             </EditText>
+
             <EditText
                     android:id="@+id/shopNameEt"
                     android:layout_below="@+id/nameEt"
-                    android:hint="Shop Name  "
+                    android:hint="Shop Name"
                     android:padding="10dp"
                     android:drawableStart="@drawable/ic_store_gray"
                     android:drawablePadding="5dp"
@@ -103,7 +109,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:inputType="textPersonName|textCapWords"
-                    android:background="@drawable/shape_rect02">
+                    android:background="@drawable/shape_rect02"
+                    android:drawableLeft="@drawable/ic_store_gray">
 
 
             </EditText>
@@ -120,7 +127,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:inputType="phone"
-                    android:background="@drawable/shape_rect02">
+                    android:background="@drawable/shape_rect02"
+                    android:drawableLeft="@drawable/ic_phone_gray">
 
 
             </EditText>
@@ -135,8 +143,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:inputType="phone"
-                    android:background="@drawable/shape_rect02">
+                    android:inputType="numberDecimal"
+                    android:background="@drawable/shape_rect02"
+                    android:drawableLeft="@drawable/ic_shipping_gray">
 
 
             </EditText>
@@ -151,13 +160,10 @@
 
 
 
-
-
-
                 <EditText
                         android:id="@+id/countryEt"
                         android:layout_below="@+id/nameEt"
-                        android:hint=" Division "
+                        android:hint="Country"
                         android:padding="10dp"
                         android:drawableStart="@drawable/ic_location_gray"
                         android:drawablePadding="5dp"
@@ -166,7 +172,8 @@
                         android:layout_margin="5dp"
                         android:inputType="textPostalAddress"
                         android:layout_weight="1"
-                        android:background="@drawable/shape_rect02">
+                        android:background="@drawable/shape_rect02"
+                        android:drawableLeft="@drawable/ic_location_gray">
 
 
                 </EditText>
@@ -174,7 +181,7 @@
                 <EditText
                         android:id="@+id/stateEt"
                         android:layout_below="@+id/nameEt"
-                        android:hint=" City"
+                        android:hint=" State"
                         android:padding="10dp"
                         android:drawableStart="@drawable/ic_location_gray"
                         android:drawablePadding="5dp"
@@ -183,14 +190,16 @@
                         android:layout_margin="5dp"
                         android:inputType="textPostalAddress"
                         android:layout_weight="1"
-                        android:background="@drawable/shape_rect02">
+                        android:background="@drawable/shape_rect02"
+                        android:drawableLeft="@drawable/ic_location_gray">
 
 
                 </EditText>
+
                 <EditText
                         android:id="@+id/cityEt"
                         android:layout_below="@+id/nameEt"
-                        android:hint=" Others"
+                        android:hint="City"
                         android:padding="10dp"
                         android:drawableStart="@drawable/ic_location_gray"
                         android:drawablePadding="5dp"
@@ -199,7 +208,8 @@
                         android:layout_margin="5dp"
                         android:inputType="textPostalAddress"
                         android:layout_weight="1"
-                        android:background="@drawable/shape_rect02">
+                        android:background="@drawable/shape_rect02"
+                        android:drawableLeft="@drawable/ic_location_gray">
 
 
                 </EditText>
@@ -219,8 +229,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
-                    android:inputType="textEmailAddress|textMultiLine"
-                    android:background="@drawable/shape_rect02">
+                    android:inputType="textEmailAddress"
+                    android:background="@drawable/shape_rect02"
+                    android:drawableLeft="@drawable/ic_mail_gray">
 
 
             </EditText>
@@ -238,12 +249,12 @@
                     android:layout_margin="5dp"
                     android:inputType="textPassword"
                     android:background="@drawable/shape_rect02"
+                    android:drawableLeft="@drawable/ic_lock_gray">
 
-
-                    ></EditText>
+            </EditText>
 
             <EditText
-                    android:id="@+id/confpasswordEt"
+                    android:id="@+id/cPasswordEt"
                     android:layout_below="@+id/passwordEt"
                     android:hint=" Confirm Password"
                     android:padding="10dp"
@@ -254,9 +265,9 @@
                     android:layout_margin="5dp"
                     android:inputType="textPassword"
                     android:background="@drawable/shape_rect02"
+                    android:drawableLeft="@drawable/ic_lock_gray">
 
-
-                    ></EditText>
+            </EditText>
 
 
 
@@ -272,9 +283,9 @@
                     android:layout_margin="5dp"
                     android:inputType="textPassword"
                     android:background="@drawable/shape_rect02"
+                    android:drawableLeft="@drawable/ic_lock_gray">
 
-
-                    ></EditText>
+            </EditText>
 
 
 
@@ -287,13 +298,11 @@
                     android:layout_centerHorizontal="true"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/confpasswordEt"
+                    android:layout_below="@id/cPasswordEt">
 
+            </Button>
 
-                    ></Button>
-
-
-            ></RelativeLayout>
+        </RelativeLayout>
 
     </ScrollView>
 

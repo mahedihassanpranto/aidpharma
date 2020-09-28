@@ -31,25 +31,23 @@ public class main_user extends AppCompatActivity {
 
     private TextView nameTv;
     private ImageButton logoutBtn;
+
     private FirebaseAuth firebaseAuth;
-    private ProgressDialog progressDialog;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main_user );
 
-        nameTv = findViewById( R.id.nameTv );
+
+        nameTv = findViewById( R.id.nameEt );
         logoutBtn = findViewById( R.id.logoutbtn );
-
-
-        progressDialog = new ProgressDialog( this );
-        progressDialog.setTitle( "Please Wait " );
-        progressDialog.setCanceledOnTouchOutside( false );
-
 
         firebaseAuth =FirebaseAuth.getInstance();
         checKUser();
+
 
         logoutBtn.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -59,61 +57,20 @@ public class main_user extends AppCompatActivity {
                 // Sign out
                 // go to login Activity
 
-
-                makeMeOffline();
-
-
-            }
-        } );
-
-
-    }
-
-
-    private void makeMeOffline() {
-
-        // after loggin in, make user online
-        progressDialog.setMessage( "Logging Out...." );
-        HashMap<String,Object> hashMap = new HashMap<>(  );
-        hashMap.put("online","false"  );
-
-        // update value to db
-
-        DatabaseReference ref= FirebaseDatabase.getInstance().getReference( "Users" );
-        ref.child(firebaseAuth.getUid()).updateChildren( hashMap ).addOnSuccessListener( new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-
-                // update successful
-
                 firebaseAuth.signOut();
                 checKUser();
-
-
-            }
-        } ).addOnFailureListener( new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-
-                // Tailed updating
-                progressDialog.dismiss();
-                Toast.makeText( main_user.this ,""+e.getMessage() , Toast.LENGTH_SHORT ).show();
-
             }
         } );
 
 
-
-
     }
-
 
     private void checKUser() {
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(user==null)
         {
-            startActivity(new Intent( main_user.this, MainActivity.class) );
+            startActivity(new Intent( main_user.this, login.class) );
             finish();
 
         }
@@ -137,7 +94,7 @@ public class main_user extends AppCompatActivity {
                     String name =""+ds.child( "name" ).getValue();
                     String accountType =""+ds.child( "accountType" ).getValue();
 
-                    nameTv.setText( name+ " +accountType+" );
+                    nameTv.setText( name+ " ("+accountType+")" );
 
 
 

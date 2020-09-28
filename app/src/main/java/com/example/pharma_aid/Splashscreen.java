@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
 import android.view.WindowManager;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,17 +24,18 @@ public class Splashscreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_splashscreen );
-        // make full screen
-        getWindow().requestFeature( getWindow().FEATURE_NO_TITLE );
+        getWindow().requestFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags( WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN );
         setContentView( R.layout.activity_splashscreen );
+        setContentView( R.layout.activity_splashscreen );
+        // make full screen
+
 
         firebaseAuth = FirebaseAuth.getInstance();
 
         // Start Login activity after 2 sec
 
-        new Handler( ).postDelayed( new Runnable() {
+        new Handler().postDelayed( new Runnable() {
 
 
             @Override
@@ -45,7 +47,7 @@ public class Splashscreen extends AppCompatActivity {
 
                     // user not logged in start login actiivity
 
-                    startActivity( new Intent( Splashscreen.this, MainActivity.class ) );
+                    startActivity( new Intent( Splashscreen.this, login.class ) );
 
                     finish();
                 }
@@ -63,7 +65,7 @@ public class Splashscreen extends AppCompatActivity {
             }
 
 
-        },1000);
+        },3000);
     }
 
 
@@ -93,7 +95,7 @@ public class Splashscreen extends AppCompatActivity {
 
                         // user is buyer
 
-                        startActivity(new Intent( Splashscreen.this, main_seller.class));
+                        startActivity(new Intent( Splashscreen.this, main_user.class));
 
                         finish();
 

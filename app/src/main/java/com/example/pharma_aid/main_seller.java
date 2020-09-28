@@ -25,27 +25,28 @@ import java.util.HashMap;
 
 public class main_seller extends AppCompatActivity {
 
-    private TextView NameTv;
+    private TextView nameTv;
     private ImageButton logoutBtn;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_main_seller );
 
-        NameTv = findViewById( R.id.nameTv );
+        nameTv = findViewById( R.id.nameEt );
         logoutBtn = findViewById( R.id.logoutbtn );
 
 
-        progressDialog = new ProgressDialog( this );
-        progressDialog.setTitle( "Please Wait " );
-        progressDialog.setCanceledOnTouchOutside( false );
+
 
         firebaseAuth =FirebaseAuth.getInstance();
         checKUser();
+
 
         logoutBtn.setOnClickListener( new View.OnClickListener() {
             @Override
@@ -55,16 +56,62 @@ public class main_seller extends AppCompatActivity {
                 // Sign out
                 // go to login Activity
 
-
-                makeMeOffline();
-
-
+                firebaseAuth.signOut();
+                checKUser();
             }
         } );
 
 
+    }
+
+    private void checKUser() {
+
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(user==null)
+        {
+            startActivity(new Intent( main_seller.this, login.class) );
+            finish();
+
+        }
+        else{
+            loadMyInfo();
+
+        }
+
 
     }
+
+    private void loadMyInfo() {
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.orderByChild( "uid" ).equalTo( firebaseAuth.getUid() ).addValueEventListener( new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+
+                    String name =""+ds.child( "name" ).getValue();
+                    String accountType =""+ds.child( "accountType" ).getValue();
+
+                    nameTv.setText( name+ " ("+accountType+")" );
+
+
+
+
+
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        } );
+
+    }
+
 
     private void makeMeOffline() {
 
@@ -103,51 +150,10 @@ public class main_seller extends AppCompatActivity {
 
     }
 
-    private void checKUser() {
-
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user==null)
-        {
-            startActivity(new Intent( main_seller.this, MainActivity.class) );
-            finish();
-
-        }
-        else{
-            loadMyInfo();
-
-        }
-
-
-    }
-
-    private void loadMyInfo() {
-
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
-        ref.orderByChild( "uid" ).equalTo( firebaseAuth.getUid() ).addValueEventListener( new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for(DataSnapshot ds: dataSnapshot.getChildren()){
-
-                    String name =""+ds.child( "name" ).getValue();
-                    String accountType =""+ds.child( "accountType" ).getValue();
-
-                    NameTv.setText( name+ " +accountType+" );
 
 
 
 
 
-                }
 
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        } );
-
-    }
 }

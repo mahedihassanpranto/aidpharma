@@ -29,13 +29,13 @@
                 ></TextView>
 
         <ImageButton
-                android:id="@+id/logoutbtn"
+                android:id="@+id/lgoutbtn"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/ic_logout_white"
                 android:layout_alignParentEnd="true"
                 android:background="@null"
-                ></ImageButton>
+                android:layout_alignParentRight="true"></ImageButton>
 
 
     </RelativeLayout>

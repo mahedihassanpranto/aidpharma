@@ -24,9 +24,9 @@
                 android:text="Name"
                 android:textStyle="bold"
                 android:textSize="20sp"
-                android:textColor="@color/colorwhite"
+                android:textColor="@color/colorwhite">
 
-                ></TextView>
+        </TextView>
 
         <ImageButton
                 android:id="@+id/logoutbtn"
@@ -35,7 +35,9 @@
                 android:src="@drawable/ic_logout_white"
                 android:layout_alignParentEnd="true"
                 android:background="@null"
-                ></ImageButton>
+                android:layout_alignParentRight="true">
+
+        </ImageButton>
 
 
     </RelativeLayout>
