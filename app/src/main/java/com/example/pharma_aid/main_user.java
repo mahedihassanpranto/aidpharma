@@ -33,6 +33,8 @@ public class main_user extends AppCompatActivity {
     private ImageButton logoutBtn;
 
     private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
+
 
 
 
@@ -42,8 +44,10 @@ public class main_user extends AppCompatActivity {
         setContentView( R.layout.activity_main_user );
 
 
+
+
         nameTv = findViewById( R.id.nameEt );
-        logoutBtn = findViewById( R.id.logoutbtn );
+        logoutBtn = findViewById( R.id.lgoutbtn );
 
         firebaseAuth =FirebaseAuth.getInstance();
         checKUser();
@@ -57,8 +61,8 @@ public class main_user extends AppCompatActivity {
                 // Sign out
                 // go to login Activity
 
-                firebaseAuth.signOut();
-                checKUser();
+
+                makeMeOffline();
             }
         } );
 
@@ -112,5 +116,43 @@ public class main_user extends AppCompatActivity {
         } );
 
     }
+
+    private void makeMeOffline() {
+
+        // after loggin in, make user online
+        progressDialog.setMessage( "Logging Out...." );
+        HashMap<String,Object> hashMap = new HashMap<>(  );
+        hashMap.put("online","false"  );
+
+        // update value to db
+
+        DatabaseReference ref= FirebaseDatabase.getInstance().getReference( "Users" );
+        ref.child(firebaseAuth.getUid()).updateChildren( hashMap ).addOnSuccessListener( new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+
+                // update successful
+
+                firebaseAuth.signOut();
+                checKUser();
+
+
+            }
+        } ).addOnFailureListener( new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+                // Tailed updating
+                progressDialog.dismiss();
+                Toast.makeText( main_user.this ,""+e.getMessage() , Toast.LENGTH_SHORT ).show();
+
+            }
+        } );
+
+
+
+
+    }
+
 
 }
